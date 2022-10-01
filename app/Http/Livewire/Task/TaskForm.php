@@ -57,7 +57,7 @@ class TaskForm extends Component
             'name' => 'required|string',
             'description' => 'required|string',
             'month' => 'required_if:period,' . Period::YEARLY->value,
-            'dayOfMonth' => 'required_unless:period,' . Period::WEEKLY->value,
+            'dayOfMonth' => 'nullable|numeric|required_unless:period,' . Period::WEEKLY->value . '|lte:31',
             'days' => 'required_if:period,' . Period::WEEKLY->value,
         ];
     }

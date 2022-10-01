@@ -8,9 +8,9 @@
         <div class="form-group col-md-3">
             <label class="col-form-label text-left" for="inputGroupSelect01">Timeframe</label>
             <div class="input-group">
-                <select class="custom-select" style="height: 31px; border: 1px solid #ced4da; border-radius: 3px; display: inline-block; width: 100%;" wire:model.defer="supplier_id" id="inputGroupSelect01">
+                <select class="custom-select" style="height: 31px; border: 1px solid #ced4da; border-radius: 3px; display: inline-block; width: 100%;" wire:model="timeframe" id="inputGroupSelect01">
                     @foreach(\Jabu\Task\Domain\Enums\Timeframe::cases() as $timeframe)
-                        <option value="{{$timeframe->name}}">{{$timeframe->getValue()}}</option>
+                        <option value="{{$timeframe->value}}">{{$timeframe->getValue()}}</option>
                     @endforeach
                 </select>
             </div>

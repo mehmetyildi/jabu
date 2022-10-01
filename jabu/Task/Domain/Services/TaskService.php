@@ -18,9 +18,10 @@ class TaskService
         $startOfNextWeek = Carbon::parse($startOfWeek)->addWeek()->toDateString();
         $endOfNextWeek = Carbon::parse($endOfWeek)->addWeek()->toDateString();
         $query = match ($timeframe){
-            Timeframe::TODAY => $query::whereDate(Carbon::today()->toDateString()),
-            Timeframe::THIS_WEEK => $query->where('date', '>=', $today)->where('date', '<=', $endOfNextWeek),
+            Timeframe::TODAY => $query->where('date', Carbon::today()->toDateString()),
+            Timeframe::THIS_WEEK => $query->where('date', '>=', $today)->where('date', '<=', $endOfWeek),
             Timeframe::NEXT_WEEK => $query->where('date', '>=', $startOfNextWeek)->where('date', '<=', $endOfNextWeek),
+            Timeframe::FUTURE => $query->where('date','>', $endOfNextWeek),
             default => $query
         };
 

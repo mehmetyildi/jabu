@@ -31,7 +31,13 @@ final class CreateTaskAction
             if($data->period === Period::WEEKLY->value){
                 CreateWeeklyTaskAction::execute($task, $daysArray, $data->startDate, $data->endDate, $data->numberOfTimes);
             }
-            dd(TaskRecurrence::all());
+            else if($data->period === Period::MONTHLY->value){
+                CreateMonthlyTaskAction::execute($task, $data->dayOfMonth, $data->startDate, $data->endDate, $data->numberOfTimes);
+            }
+            else {
+                CreateYearlyTaskAction::execute($task, $data->month, $data->dayOfMonth, $data->startDate, $data->endDate, $data->numberOfTimes);
+            }
+            return $task;
         });
     }
 }

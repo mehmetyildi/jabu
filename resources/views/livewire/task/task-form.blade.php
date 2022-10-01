@@ -67,6 +67,40 @@
                                 </label>
                             </div>
                         @endforeach
+                    @elseif($period === \Jabu\Task\Domain\Enums\Period::YEARLY->value)
+                        <div class="form-group col-6 {{($errors->first('month')?'has-error':'')}}">
+                            <label for="month-select" class="col-form-label text-left">Month *</label>
+                            <select class="custom-select"
+                                    style="height: 38px; border: 1px solid #ced4da; border-radius: 6px; display: inline-block; width: 100%;"
+                                    wire:model="month" id="month-select">
+                                <option value="0" selected>Choose...</option>
+                                @foreach(\Jabu\Task\Domain\Enums\Month::cases() as $s)
+                                    <option value="{{$s->value}}">{{$s->name}}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->first('month'))
+                                <div class="form-control-feedback text-danger mt-2">{{$errors->first('month')}}</div>
+                            @endif
+                        </div>
+                        <div class="form-group col-6 {{($errors->first('dayOfMonth')?'has-error':'')}}">
+                            <label for="dayOfMonth-select" class="col-form-label text-left">Day Of Month *</label>
+                            <div class="input-group">
+                                {!! Form::number('dayOfMonth', null, ['class' => 'form-control'.($errors->first('dayOfMonth')?' form-control-danger':''), 'required' => 'required', 'step' => 1, 'wire:model'=>'dayOfMonth']) !!}
+                            </div>
+                            @if($errors->first('dayOfMonth'))
+                                <div class="form-control-feedback text-danger mt-2">{{$errors->first('dayOfMonth')}}</div>
+                            @endif
+                        </div>
+                    @else
+                        <div class="form-group col-12 {{($errors->first('dayOfMonth')?'has-error':'')}}">
+                            <label for="dayOfMonth-select" class="col-form-label text-left">Day Of Month *</label>
+                            <div class="input-group">
+                                {!! Form::number('dayOfMonth', null, ['class' => 'form-control'.($errors->first('dayOfMonth')?' form-control-danger':''), 'required' => 'required', 'step' => 1, 'wire:model'=>'dayOfMonth']) !!}
+                            </div>
+                            @if($errors->first('dayOfMonth'))
+                                <div class="form-control-feedback text-danger mt-2">{{$errors->first('dayOfMonth')}}</div>
+                            @endif
+                        </div>
                     @endif
                     <div class="form-group col-6 {{($errors->first('recurrenceType')?'has-error':'')}}">
                         <label for="recurrenceType-select" class="col-form-label text-left">Recurrence Type *</label>
@@ -84,7 +118,7 @@
                     </div>
                     @if($recurrenceType === \Jabu\Task\Domain\Enums\RecurrenceType::NUMBER_OF_TIMES->value)
                         <div class="form-group col-6 {{($errors->first('numberOfTimes')?'has-error':'')}}">
-                            <label for="numberOfTimes-select" class="col-form-label text-left">Name *</label>
+                            <label for="numberOfTimes-select" class="col-form-label text-left">Number Of Times *</label>
                             <div class="input-group">
                                 {!! Form::number('numberOfTimes', null, ['class' => 'form-control'.($errors->first('numberOfTimes')?' form-control-danger':''), 'required' => 'required', 'step' => 1, 'wire:model'=>'numberOfTimes']) !!}
                             </div>

@@ -9,10 +9,6 @@
     <div class="col-sm-12 col-md-12">
         <div class="row">
             {{$extra_criterias}}
-            <div class="col-md-1">
-                <button wire:click="search" type="button" style="margin-top: 2.3rem"
-                        class="btn btn-outline-dark btn-sm"><i class="fas fa-search"></i></button>
-            </div>
         </div>
     </div>
     <div class="table-responsive">
