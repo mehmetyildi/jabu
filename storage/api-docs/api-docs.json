@@ -1,0 +1,540 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Timberhub API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Get all products",
+                "operationId": "product-list",
+                "parameters": [
+                    {
+                        "name": "searchTerm",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "supplier_id",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Country list data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Create a new product",
+                "operationId": "products-create",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Product create invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonExceptionResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products/{product}": {
+            "put": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "Update a product",
+                "operationId": "products-update",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Product create invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonExceptionResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "products/{product}": {
+            "delete": {
+                "tags": [
+                    "products"
+                ],
+                "summary": "This method is for deleting product",
+                "operationId": "delete-product",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "product id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Invalid product"
+                    }
+                }
+            }
+        },
+        "/api/suppliers": {
+            "get": {
+                "tags": [
+                    "suppliers"
+                ],
+                "summary": "Get all suppliers",
+                "operationId": "supplier-list",
+                "parameters": [
+                    {
+                        "name": "searchTerm",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Country list data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SupplierResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "suppliers"
+                ],
+                "summary": "Create a new supplier",
+                "operationId": "suppliers-create",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateSupplierRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Supplier created data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SupplierResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Supplier create invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonExceptionResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/suppliers/{supplier}": {
+            "put": {
+                "tags": [
+                    "suppliers"
+                ],
+                "summary": "Edit Supplier",
+                "operationId": "suppliers-edit",
+                "parameters": [
+                    {
+                        "name": "supplier",
+                        "in": "path",
+                        "description": "Supplier id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateSupplierRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Supplier edited data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SupplierResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonExceptionResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid supplier"
+                    },
+                    "422": {
+                        "description": "Supplier create invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonExceptionResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "suppliers"
+                ],
+                "summary": "This method is for deleting supplier",
+                "operationId": "delete-supplier",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "supplier id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Invalid supplier"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "JsonCommonResource": {
+                "title": "JsonCommonResource",
+                "properties": {
+                    "success": {
+                        "schema": "JsonCommonResource",
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "messages": {
+                        "schema": "JsonCommonResource",
+                        "type": "null",
+                        "example": "['Everything is OK!']"
+                    },
+                    "data": {
+                        "schema": "JsonCommonResource",
+                        "type": "null",
+                        "example": "['everything' => 'OK']"
+                    }
+                },
+                "type": "object"
+            },
+            "JsonExceptionResource": {
+                "title": "JsonExceptionResource",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/JsonCommonResource"
+                    },
+                    {
+                        "properties": {
+                            "success": {
+                                "schema": "JsonExceptionResource",
+                                "type": "boolean",
+                                "example": "false"
+                            },
+                            "messages": {
+                                "schema": "JsonExceptionResource",
+                                "type": "null",
+                                "example": "['Something wrong occured ...']"
+                            },
+                            "data": {
+                                "schema": "JsonExceptionResource",
+                                "type": "null",
+                                "example": "null"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CreateProductRequest": {
+                "title": "ProductListRequest",
+                "properties": {
+                    "species": {
+                        "schema": "CreateProductRequest",
+                        "type": "string",
+                        "example": "apple"
+                    },
+                    "gradingSystem": {
+                        "schema": "CreateProductRequest",
+                        "type": "string",
+                        "example": "nordic_blue"
+                    },
+                    "grade": {
+                        "schema": "CreateProductRequest",
+                        "type": "string",
+                        "example": "A1"
+                    },
+                    "dyingMethod": {
+                        "schema": "CreateProductRequest",
+                        "type": "string",
+                        "example": "kiln_dried"
+                    },
+                    "treatment": {
+                        "schema": "CreateProductRequest",
+                        "type": "string",
+                        "example": "anti_stain"
+                    },
+                    "thickness": {
+                        "schema": "CreateProductRequest",
+                        "type": "integer",
+                        "example": "30"
+                    },
+                    "width": {
+                        "schema": "CreateProductRequest",
+                        "type": "integer",
+                        "example": "120"
+                    },
+                    "length": {
+                        "schema": "CreateProductRequest",
+                        "type": "integer",
+                        "example": "1200"
+                    },
+                    "suppliers": {
+                        "schema": "CreateProductRequest",
+                        "type": "array",
+                        "items": {},
+                        "example": "[1, 2]"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductListRequest": {
+                "title": "ProductListRequest",
+                "properties": {
+                    "searchTerm": {
+                        "schema": "ProductListRequest",
+                        "type": "string",
+                        "example": "product"
+                    },
+                    "supplier_id": {
+                        "schema": "ProductListRequest",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductResource": {
+                "title": "SupplierResource",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/JsonCommonResource"
+                    },
+                    {
+                        "properties": {
+                            "species": {
+                                "schema": "ProductResource",
+                                "type": "string",
+                                "example": "apple"
+                            },
+                            "gradingSystem": {
+                                "schema": "ProductResource",
+                                "type": "string",
+                                "example": "nordic_blue"
+                            },
+                            "grade": {
+                                "schema": "ProductResource",
+                                "type": "string",
+                                "example": "A1"
+                            },
+                            "dyingMethod": {
+                                "schema": "ProductResource",
+                                "type": "string",
+                                "example": "kiln_dried"
+                            },
+                            "treatment": {
+                                "schema": "ProductResource",
+                                "type": "string",
+                                "example": "anti_stain"
+                            },
+                            "thickness": {
+                                "schema": "ProductResource",
+                                "type": "integer",
+                                "example": "30"
+                            },
+                            "width": {
+                                "schema": "ProductResource",
+                                "type": "integer",
+                                "example": "120"
+                            },
+                            "length": {
+                                "schema": "ProductResource",
+                                "type": "integer",
+                                "example": "1200"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CreateSupplierRequest": {
+                "title": "SupplierListRequest",
+                "properties": {
+                    "name": {
+                        "schema": "CreateSupplierRequest",
+                        "type": "string",
+                        "example": "supplier"
+                    }
+                },
+                "type": "object"
+            },
+            "SupplierListRequest": {
+                "title": "SupplierListRequest",
+                "properties": {
+                    "searchTerm": {
+                        "schema": "SupplierListRequest",
+                        "type": "string",
+                        "example": "supplier"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateSupplierRequest": {
+                "title": "SupplierListRequest",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CreateSupplierRequest"
+                    },
+                    {
+                        "properties": {
+                            "name": {
+                                "schema": "UpdateSupplierRequest",
+                                "type": "string",
+                                "example": "supplier"
+                            }
+                        }
+                    }
+                ]
+            },
+            "SupplierResource": {
+                "title": "SupplierResource",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/JsonCommonResource"
+                    },
+                    {
+                        "properties": {
+                            "name": {
+                                "schema": "SupplierResource",
+                                "type": "string",
+                                "example": "Timberhub"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
