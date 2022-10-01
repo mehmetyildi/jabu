@@ -29,7 +29,7 @@ final class CreateWeeklyTaskAction
         } else {
             foreach ($days as $day) {
                 $isFirstIteration = true;
-                while (Carbon::parse($endDate)->diffInDays() >= $day) {
+                while (Carbon::parse($endDate)->diffInDays($startOfWeek) >= $day) {
                     if ($isFirstIteration && Carbon::parse($startOfWeek)->addDays($day)->lt(Carbon::parse($startDate))) {
                         $isFirstIteration = false;
                         $day += 7;

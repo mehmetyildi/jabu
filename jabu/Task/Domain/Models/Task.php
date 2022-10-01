@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Jabu\Task\Domain\Enums\Period;
 use Jabu\Task\Domain\Enums\RecurrenceType;
-use Jabu\Task\TaskRecurrance\Domain\Models\TaskRecurrence;
+use Jabu\Task\TaskRecurrence\Domain\Models\TaskRecurrence;
 
 /**
  * Jabu\Task\Domain\Models\Task
